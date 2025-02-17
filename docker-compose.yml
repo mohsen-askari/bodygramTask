@@ -9,7 +9,7 @@ services:
   bodygram-api:
     build:
       context: .
-      dockerfile: ../api-platform/Dockerfile
+      dockerfile: ./Dockerfile
     restart: on-failure
     depends_on:
       - bodygram-db

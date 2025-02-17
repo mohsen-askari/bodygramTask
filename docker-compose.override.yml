@@ -7,8 +7,8 @@ services:
 # Bodygram Api Platform
   bodygram-db:
     volumes:
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./mysql/data/bodygram-db:/var/lib/mysql
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./.docker/mysql/data/bodygram-db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: Welcome2Bodygram!
       MYSQL_DATABASE: bodygram-db
