@@ -5,10 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ThemesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ThemesRepository::class)]
-#[ApiResource]
-class Themes
+#[ApiResource()]
+class Theme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,13 +17,14 @@ class Themes
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $colors = null;
+    #[Assert\NotBlank]
+    private ?string $name;
 
     #[ORM\Column]
-    private ?bool $isDefault = null;
+    private array $colors = [];
+
+    #[ORM\Column]
+    private ?bool $isDefault = false;
 
     public function getId(): ?int
     {
@@ -41,12 +43,12 @@ class Themes
         return $this;
     }
 
-    public function getColors(): ?array
+    public function getColors(): array
     {
         return $this->colors;
     }
 
-    public function setColors(?array $colors): static
+    public function setColors(array $colors): static
     {
         $this->colors = $colors;
 
