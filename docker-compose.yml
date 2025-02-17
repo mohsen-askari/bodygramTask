@@ -1,0 +1,22 @@
+services:
+
+
+# For Bodygram Platform
+  bodygram-db:
+    image: mysql:8.0.23
+    restart: on-failure
+
+  bodygram-api:
+    build:
+      context: .
+      dockerfile: ../api-platform/Dockerfile
+    restart: on-failure
+    depends_on:
+      - bodygram-db
+    working_dir: /var/www
+
+  bodygram-api-nginx:
+    image: nginx
+    restart: on-failure
+    depends_on:
+      - bodygram-api

@@ -1,0 +1,36 @@
+services:
+  adminer:
+    image: adminer
+    ports:
+      - 9999:8080
+
+# Bodygram Api Platform
+  bodygram-db:
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/data/bodygram-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Welcome2Bodygram!
+      MYSQL_DATABASE: bodygram-db
+      MYSQL_USER: bodygram
+      MYSQL_PASSWORD: Welcome2Bodygram!
+    ports:
+      - 43306:3306
+
+
+  bodygram-api:
+    volumes:
+      - ./php.ini:/usr/local/etc/php/conf.d/php-custom.ini
+      - ./:/var/www
+    ports:
+      - 9001:9000
+
+
+  bodygram-api-nginx:
+    ports:
+      - "89:80"
+      - "8431:443"
+    volumes:
+      - ./.docker/nginx/sites/bodygram-api.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./:/var/www
