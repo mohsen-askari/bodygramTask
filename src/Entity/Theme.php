@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\ThemesRepository;
+use App\Repository\ThemeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
@@ -14,7 +14,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ThemesRepository::class)]
+#[ORM\Entity(repositoryClass: ThemeRepository::class)]
 #[
     ApiResource(
         operations: [
@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     )
 ]
 
-class Themes
+class Theme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

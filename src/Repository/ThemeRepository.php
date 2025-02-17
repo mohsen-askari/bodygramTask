@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Themes;
+use App\Entity\Theme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Themes>
+ * @extends ServiceEntityRepository<Theme>
  */
-class ThemesRepository extends ServiceEntityRepository
+class ThemeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Themes::class);
+        parent::__construct($registry, Theme::class);
     }
 
     //    /**
-    //     * @return Themes[] Returns an array of Themes objects
+    //     * @return Theme[] Returns an array of Themes objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class ThemesRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Themes
+    //    public function findOneBySomeField($value): ?Theme
     //    {
     //        return $this->createQueryBuilder('t')
     //            ->andWhere('t.exampleField = :val')
