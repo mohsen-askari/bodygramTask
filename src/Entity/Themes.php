@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ThemesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
@@ -21,6 +23,14 @@ use Symfony\Component\Validator\Constraints as Assert;
             new Patch(),
             new Put(),
             new GetCollection()
+        ]
+    ),
+
+    ApiFilter(  
+        SearchFilter::class, 
+        properties:[
+            "name" => SearchFilter::STRATEGY_PARTIAL,
+            "isDefault" => SearchFilter::STRATEGY_IPARTIAL
         ]
     )
 ]
