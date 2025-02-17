@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ThemeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -20,7 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         operations: [
             new Get(),
             new Post(),
-            new Patch(),
+            new Patch(
+                name: "Set Default",
+                uriTemplate: "/themes/default/{id}"
+            ),
             new Put(),
             new GetCollection()
         ]
@@ -35,7 +39,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     )
 ]
 
-class Themes
+class Theme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
