@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     )
 ]
 
-class Theme
+class Themes
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
