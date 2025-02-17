@@ -1,4 +1,4 @@
-api_platform:
-    resource: .
-    type: api_platform
-    prefix: /api
+api.themes.default:
+    path: /api/themes/default/{id}
+    controller: App\Controller\ThemesController::themeDefault
+    methods: ['PATCH']
