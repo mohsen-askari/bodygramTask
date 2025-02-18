@@ -8,11 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Processor\CustomThemeProcessor;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
@@ -20,7 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ApiResource(
         operations: [
             new Get(),
-            new Post(),
+            new Post(
+                processor: CustomThemeProcessor::class
+            ),
             new Patch(
                 name: "Set Default",
                 uriTemplate: "/themes/default/{id}"
@@ -34,7 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         SearchFilter::class, 
         properties:[
             "name" => SearchFilter::STRATEGY_PARTIAL,
-            "isDefault" => SearchFilter::STRATEGY_IPARTIAL
+            "isDefault" => SearchFilter::STRATEGY_PARTIAL
         ]
     )
 ]

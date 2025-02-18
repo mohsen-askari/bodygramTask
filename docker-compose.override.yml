@@ -20,7 +20,6 @@ services:
 
   bodygram-api:
     volumes:
-      - ./php.ini:/usr/local/etc/php/conf.d/php-custom.ini
       - ./:/var/www
     ports:
       - 9001:9000
