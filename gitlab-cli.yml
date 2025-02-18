@@ -1,0 +1,33 @@
+stages:
+  - test
+
+test:
+  image: bodygram-api
+  services:
+    - bodygram-db:
+        image: mysql:8.0 
+        alias: bodygram-db
+        environment:
+          MYSQL_ROOT_PASSWORD: Welcome2Bodygram!
+          MYSQL_DATABASE: bodygram-db
+          MYSQL_USER: bodygram
+          MYSQL_PASSWORD: Welcome2Bodygram!
+
+  variables:
+    DATABASE_URL: "mysql://bodygram:Welcome2Bodygram!@bodygram-db:3306/bodygram-db?serverVersion=8.0.32&charset=utf8mb4"
+
+  before_script:
+    - composer install --no-interaction --no-dev
+    - bin/console doctrine:database:create --if-not-exists
+    - bin/console doctrine:schema:update --force
+  script:
+    - bin/console phpunit
+  artifacts:
+    paths:
+      - var/cache/test/
+    expire_in: 1 day
+  only:
+    - main
+    - develop
+  except:
+    - feature/*
