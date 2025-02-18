@@ -43,9 +43,8 @@ final class CustomThemeProcessor implements ProcessorInterface
             $this->themeRepository->updateDefualt();
         }
 
-        $this->em->persist($theme);
-        $this->em->flush();
-
+        // $this->em->persist($theme);
+        // $this->em->flush();
 
         return $theme;
     }
