@@ -71,7 +71,7 @@
         ]
     },
     "conflict": {
-        "symfony/symfony": "*"
+        "symfony/symfony": "6.4.*"
     },
     "extra": {
         "symfony": {
@@ -81,6 +81,7 @@
         }
     },
     "require-dev": {
+        "phpunit/phpunit": "^10.5",
         "symfony/maker-bundle": "^1.62"
     }
 }
